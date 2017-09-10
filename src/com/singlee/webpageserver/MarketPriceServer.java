@@ -1,11 +1,7 @@
 package com.singlee.webpageserver;
 
 import com.singlee.priceengine.common.ExceptionSender;
-import java.util.ArrayList;
-
-import java.util.List;
 import org.apache.log4j.Logger;
-import com.singlee.priceengine.dao.WebPageCommonDAOInterface;
 import com.singlee.pricesource.exception.CatchWebPageException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -30,7 +26,7 @@ public class MarketPriceServer {
     public static boolean isAlive_Sender_WorkThread = false;// 判断线程是否启动
 
     public static Sender_ManageThread Sender_ManageThread; // 管理发送数据线程的线程
-    public static Sender_WorkThread Sender_WorkThread = null;// 发送数据线程
+    public static Sender_WorkThread Sender_WorkThread ;// 发送数据线程
 
     /**
      * 黄正良 启动发送数据线程

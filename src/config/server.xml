@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 <beans>
+    <!-- 
     <import resource="jmsSender.xml"/>
     <import resource="exceptionSender.xml"/>
+    -->
     <!-- 发送的报价日志 -->
     <bean id="commWriteFile" class="com.singlee.priceengine.common.CommWriteFile">
         <property name="filepath" value="./quoteLog/"/><!-- 报价日志所在目录 -->
@@ -24,7 +26,7 @@
 	
 	
     <!-- JMS网页源服务器发送数据的类 -->
-    <bean id="webPageSender" class="com.singlee.webpageserver.WebPageSender" singleton="false">
+    <bean id="webPageSender" class="com.singlee.webpageserver.MarketPriceSender" singleton="false">
         <property name="quotePrice" ref="quotePrice"></property>		<!-- 网页抓取类 -->
         <property name="jmsSender" ref ="jmsSender"/>       <!-- 报价发送类 -->
         <property name="exSender" ref="exceptionSender"/> <!-- 异常发送类 -->
@@ -32,13 +34,12 @@
     </bean>
 	
     <!-- 网页源服务器类 -->
-    <bean id="webPageServer" class="com.singlee.webpageserver.WebPageServer" singleton="false">  
+    <bean id="webPageServer" class="com.singlee.webpageserver.MarketPriceServer" singleton="false">  
         <property name="serverName" value="中行网页源"/>	<!-- 网页源名称 --> 
         <property name="serverCode" value="382"/>	<!-- 网页源编号 --> 
         <property name="reCatchPageTime" value="30000"/>	<!-- 抓取网页数据后间隔多长时间后重新抓取 --> 
         <property name="warnTimes" value="4"/>	<!-- 连续抓取网页数据失败多少次后进行异常提醒 --> 
         <property name="cls" value="1000"/>	<!-- 显示多少行数据后清屏一次 -->
-        <property name="sendDataDAO" ref="webPageSender"></property><!-- JMS发送数据类 -->
         <property name="xmlPathName" value="config/runstatus.xml"/><!--要修改程序启动状态的ml的文件位置及名称 -->
     </bean>
     
