@@ -41,10 +41,10 @@ public class MarketPriceSender {
                 setQuoteData_List(new MarketPriceCatch_BCHO().catchQuote());
                 break;
             case 441:// 工行
-                setQuoteData_List(new MarketPriceCatch_ICBC().catchQuote());
+                //setQuoteData_List(new MarketPriceCatch_ICBC().catchQuote());
                 break;
             case 442:// 农行
-                setQuoteData_List(new MarketPriceCatch_ABCI().catchQuote());
+                //setQuoteData_List(new MarketPriceCatch_ABCI().catchQuote());
                 break;
             case 511:// 货币网
                 setQuoteData_List(new MarketPriceCatch_Chinamoney().catchQuote());

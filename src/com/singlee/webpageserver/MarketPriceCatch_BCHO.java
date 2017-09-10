@@ -24,23 +24,6 @@ public class MarketPriceCatch_BCHO {
         this.commWriteFileWeb = commWriteFileWeb;
     }
 
-    public List<String> getJmsData(int bankid) throws CatchWebPageException {
-        try {
-//			List<String> list = dealBoc();
-//			for(int i=0;i<list.size();i++){
-//				System.out.println(list.get(i));
-//				commWriteFileWeb.writeFile("已抓取：" + list.get(i).toString()+ "\r\n");
-//			}
-            return catchQuote();
-        } catch (CatchWebPageException e) {
-            logger.error(e.getMessage(), e);
-            throw new CatchWebPageException(e.getMessage());
-        } catch (Exception e) {
-            logger.error("获取网页数据时出现异常！", e);
-            throw new CatchWebPageException("获取网页数据时出现异常！");
-        }
-    }
-
     @SuppressWarnings("deprecation")
     public List<String> catchQuote() throws Exception {
 
@@ -97,7 +80,7 @@ public class MarketPriceCatch_BCHO {
     }
 
     public static void main(String[] arg0) throws Exception {
-        new MarketPriceCatch_BCHO().catchQuote();
+        Object O = new MarketPriceCatch_BCHO().catchQuote();
         System.out.println("com.singlee.webpageserver.MarketPriceCatch_BCHO.main()");
 
         //while (true) {
