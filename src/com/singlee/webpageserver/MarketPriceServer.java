@@ -25,9 +25,9 @@ public class MarketPriceServer {
     private Logger logger = Logger.getLogger(this.getClass());
     private String xmlPathName;
 
-    public static boolean isAlive_ServerThread = true;// 判断线程是否启动
-    public static boolean isAlive_Sender_ManageThread = true;// 判断线程是否启动
-    public static boolean isAlive_Sender_WorkThread = true;// 判断线程是否启动
+    public static boolean isAlive_ServerThread = false;// 判断线程是否启动
+    public static boolean isAlive_Sender_ManageThread = false;// 判断线程是否启动
+    public static boolean isAlive_Sender_WorkThread = false;// 判断线程是否启动
 
     public static Sender_ManageThread Sender_ManageThread; // 管理发送数据线程的线程
     public static Sender_WorkThread Sender_WorkThread = null;// 发送数据线程
@@ -37,45 +37,50 @@ public class MarketPriceServer {
      */
     private void startMainThread() {
         try {
-            Sender_WorkThread = new Sender_WorkThread();
-            Sender_WorkThread.start();
-        } catch (Exception e) {
-            isAlive_ServerThread = false;
-            sendExMsg("000", "启动出现异常,请查看!", e);
-            showErrorMsg("启运发送数据线程出现异常！");
-        }
-
-        try {
             Sender_ManageThread = new Sender_ManageThread();
             Sender_ManageThread.start();
         } catch (Exception e) {
-            isAlive_ServerThread = false;
+            isAlive_Sender_ManageThread = false;
             sendExMsg("000", "启运管理发送数据线程的线程出现异常!", e);
             showErrorMsg("启运管理发送数据线程的线程出现异常！");
+        } finally {
+            isAlive_Sender_ManageThread = true;
         }
-
+        try {
+            Sender_WorkThread = new Sender_WorkThread();
+            Sender_WorkThread.start();
+        } catch (Exception e) {
+            isAlive_Sender_WorkThread = false;
+            sendExMsg("000", "启动出现异常,请查看!", e);
+            showErrorMsg("启运发送数据线程出现异常！");
+        } finally {
+            isAlive_Sender_WorkThread = true;
+        }
+        if (isAlive_Sender_WorkThread && isAlive_Sender_ManageThread) {
+            isAlive_ServerThread = true;
+        }
     }
 
     /**
-     * 黄正良 管理主线程类
+     * 黄正良 发送数据的管理线程
      *
      */
     class Sender_ManageThread extends Thread {
 
         public void run() {
             logger.debug("管理线程开始起动……");
-            while (MarketPriceServer.isAlive_ServerThread) {
+            while (!MarketPriceServer.isAlive_ServerThread) {
                 logger.debug("管理线程循环开始……");
 
                 logger.debug("管理线程开始判断主线程是否在运行……");
-                // 判断发送数据的线程是否停止，是则重新启动发送数据的线程否则不做任何处理
-                if (!isRun(Sender_WorkThread, "发送数据的线程")) {
+                if (!isRun(Sender_WorkThread, "发送数据的线程")) { // 判断发送数据的线程是否停止，是则重新启动发送数据的线程否则不做任何处理
                     logger.debug("管理线程检测到主线程已停止运行……");
-                    jmsSender.setClose(true);// 重新加载jms配置
-                    startMainThread(); // 启动主线程
+
+                    Sender_WorkThread.run();// 启动主线程
                     logger.debug("管理线程重起主线程成功……");
+                } else {
+                    logger.debug("管理线程检测到主线程正常运行……");
                 }
-                logger.debug("管理线程判断主线程是否在运行结束……");
                 logger.debug("管理线程开始休眠……");
                 threadWait(new Object(), 30000);
             }
@@ -83,17 +88,17 @@ public class MarketPriceServer {
     }
 
     /**
-     * 黄正良 发送数据的线程类
+     * 黄正良 发送数据的本线程
      */
     class Sender_WorkThread extends Thread {
 
         public void run() {
             int counter = 0;// 计数器记录是否连续解析网页源失败次数达到指定的次数
             int k = 1; // jms通信状态 1 正常 0 断开
+            MarketPriceSender MarketPS = new MarketPriceSender();
 
             logger.debug("主线程开始运行……");
             while (MarketPriceServer.isAlive_ServerThread) {
-                MarketPriceSender MP = new MarketPriceSender();
 
                 logger.debug("主线程循环开始运行……");
                 try {
@@ -101,7 +106,7 @@ public class MarketPriceServer {
                     // 判断发送数据的线程是否停止，是则重新启动发送数据的线程否则不做任何处理
                     if (!isRun(Sender_ManageThread, "管理发送数据线程的线程")) {
                         logger.debug("主线程检测到管理线程已停止运行……");
-                        startManagerThread();// 启动管理线程
+                        startMainThread();// 启动管理线程
                         logger.debug("主线程重起管理线程成功……");
                     }
                     logger.debug("主线程判断管理线程是否在运行结束……");
@@ -117,7 +122,7 @@ public class MarketPriceServer {
 
                 try {
                     logger.debug("主线程开始调用getJmsData()抓取网页……");
-                    MP.catchQuoteData();
+                    MarketPS.catchQuoteData();
                     //continue;
                     logger.debug("主线程调用getJmsData()抓取网页结束……");
 
@@ -140,13 +145,13 @@ public class MarketPriceServer {
 
                 try {
 
-                    if (MP.getQuoteData_List() == null) {
+                    if (MarketPS.getQuoteData_List() == null) {
                         logger.debug("主线程开始休眠……");
                         //threadWait(new Object(), MarketPriceServer.reCatchPageTime);// 重新抓取数据的时间
                         logger.debug("主线程休眠完成……");
                     } else {
                         logger.debug("主线程开始发送组装的数据……");
-                        MP.sendQuoteData();
+                        MarketPS.sendQuoteData();
                         logger.debug("主线程发送组装的数据完成……");
 
                         logger.debug("主线程将jms通信状况在界面显示……");
@@ -185,7 +190,7 @@ public class MarketPriceServer {
      * 黄正良 调用此方法启动网页源
      */
     public void startServer() {
-        this.isAlive_ServerThread = true;// 改变线程启动状态
+        //this.isAlive_ServerThread = true;// 改变线程启动状态
         startMainThread();// 启动主线程
     }
 
@@ -217,7 +222,7 @@ public class MarketPriceServer {
     public boolean isAlive_Server() {
         return isAlive_ServerThread;
     }
-  
+
     /**
      * 黄正良 线程等待
      *

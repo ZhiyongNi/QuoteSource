@@ -26,6 +26,7 @@ public class MarketPriceSender {
     private CommWriteFile commWriteFile;// 写文件
 
     public MarketPriceSender() {
+         JmsSender.setClose(true);// 重新加载jms配置
     }
 
     /**
