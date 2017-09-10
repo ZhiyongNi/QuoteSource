@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans default-autowire="byName">
+
+<import resource="jmsconfig.xml"/>
+
+
+<bean id="quoteDownTopicConnectionFactory"  class="org.springframework.jndi.JndiObjectFactoryBean">
+ 		 <property name="jndiTemplate"> <ref bean="jndiTemplate"/>    </property>    
+         <property name="jndiName"> <value>quoteDownTopicConnectionFactory</value></property>
+</bean>
+  
+ <bean id="quoteDownQueue"  class="org.springframework.jndi.JndiObjectFactoryBean">
+     <property name="jndiTemplate"> <ref bean="jndiTemplate"/>    </property>    
+     <property name="jndiName"> <value>quoteDownQueue</value></property>
+ </bean>
+
+ <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">   
+         <property name="connectionFactory" ref="quoteDownTopicConnectionFactory"/>  
+         <property name="defaultDestination" ref="quoteDownTopic"></property> 
+ </bean>
+ <bean id="quoteSender"  class="com.singlee.priceengine.common.QuoteSender"/>
+ 
+</beans>

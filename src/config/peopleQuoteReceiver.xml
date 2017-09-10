@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans default-autowire="byName">
+
+<import resource="jmsconfig.xml"/>
+
+
+<bean id="peopleQuoteConnectionFactory"  class="org.springframework.jndi.JndiObjectFactoryBean">
+ 		 <property name="jndiTemplate"> <ref bean="jndiTemplate"/>    </property>    
+         <property name="jndiName"> <value>peopleQuoteConnectionFactory</value></property>
+</bean>
+  
+ <bean id="peopleQuoteQueue"  class="org.springframework.jndi.JndiObjectFactoryBean">
+     <property name="jndiTemplate"> <ref bean="jndiTemplate"/>    </property>    
+     <property name="jndiName"> <value>peopleQuoteQueue</value></property>
+ </bean>
+<bean id="peopleQuoteReceiver"  class="com.singlee.priceengine.common.PeopleQuoteReceiver"/>
+
+  <bean id="listenerContainerQueue2"  
+          class="org.springframework.jms.listener.DefaultMessageListenerContainer">   
+        <property name="destination" ref="peopleQuoteQueue"/>   
+        <property name="connectionFactory" ref="peopleQuoteConnectionFactory" />   
+        <property name="messageListener" ref="peopleQuoteReceiver" />   
+    </bean>  
+</beans>

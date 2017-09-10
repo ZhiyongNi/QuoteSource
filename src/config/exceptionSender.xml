@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans default-autowire="byName">
+
+<import resource="jmsconfig.xml"/>
+
+<bean id="exceptionDealConnectionFactory"  class="org.springframework.jndi.JndiObjectFactoryBean">
+ 		 <property name="jndiTemplate"> <ref bean="jndiTemplate"/>    </property>    
+         <property name="jndiName"> <value>exceptionDealConnectionFactory</value></property>
+</bean>
+  
+ <bean id="exceeptionDealQueue"  class="org.springframework.jndi.JndiObjectFactoryBean">
+     <property name="jndiTemplate"> <ref bean="jndiTemplate"/>    </property>    
+     <property name="jndiName"> <value>exceeptionDealQueue</value></property>
+ </bean>
+
+ <bean id="jmsExceptionTemplate" class="org.springframework.jms.core.JmsTemplate">   
+         <property name="connectionFactory" ref="exceptionDealConnectionFactory"/>  
+         <property name="defaultDestination" ref="exceeptionDealQueue"></property> 
+ </bean>
+ <bean id="exceptionSender"  class="com.singlee.priceengine.common.ExceptionSender"/>
+ 
+</beans>

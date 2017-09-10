@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<import resource="jmsSender.xml"/>
+	<import resource="exceptionSender.xml"/>
+ 	 <!-- 发送的报价日志 -->
+ 	 <bean id="commWriteFile" class="com.singlee.priceengine.common.CommWriteFile">
+		<property name="filepath" value="./quoteLog/"/><!-- 报价日志所在目录 -->
+ 	 </bean>
+ 	 <bean id="commWriteFileWeb" class="com.singlee.priceengine.common.CommWriteFileWeb">
+		<property name="filepath" value="./quoteLog/"/><!-- 报价日志所在目录 -->
+ 	 </bean>
+     <!-- 网页源抓取类 --> 
+	<bean id="quotePrice" class="com.singlee.webpageserver.QuotePrice" singleton="false">
+	<property name="commWriteFileWeb" ref="commWriteFileWeb"/><!-- 写日志类 -->
+	<property name="catchQuote" ref="catchQuote"/><!-- 写日志类 -->
+	<property name="conTimeOut" value="10000"/><!-- 连接网页最大超时值 -->
+	<property name="getTimeOut" value="15000"/><!-- 读网页数据超时最大值 -->
+	</bean>
+	
+	<bean id="catchQuote" class="com.singlee.webpageserver.CatchQuote" singleton="false">
+	<property name="commWriteFileWeb" ref="commWriteFileWeb"/><!-- 写日志类 -->
+	</bean>
+	
+	
+	<!-- JMS网页源服务器发送数据的类 -->
+	<bean id="webPageSender" class="com.singlee.webpageserver.WebPageSender" singleton="false">
+      	<property name="quotePrice" ref="quotePrice"></property>		<!-- 网页抓取类 -->
+      	<property name="jmsSender" ref ="jmsSender"/>       <!-- 报价发送类 -->
+       	<property name="exSender" ref="exceptionSender"/> <!-- 异常发送类 -->
+       	<property name="commWriteFile" ref="commWriteFile"/><!-- 写日志类 -->
+	</bean>
+	
+	<!-- 网页源服务器类 -->
+    <bean id="webPageServer" class="com.singlee.webpageserver.WebPageServer" singleton="false">  
+      	<property name="serverName" value="中行网页源"/>	<!-- 网页源名称 --> 
+      	<property name="serverCode" value="382"/>	<!-- 网页源编号 --> 
+       <property name="reCatchPageTime" value="30000"/>	<!-- 抓取网页数据后间隔多长时间后重新抓取 --> 
+      	<property name="warnTimes" value="4"/>	<!-- 连续抓取网页数据失败多少次后进行异常提醒 --> 
+      	<property name="cls" value="1000"/>	<!-- 显示多少行数据后清屏一次 -->
+      	<property name="sendDataDAO" ref="webPageSender"></property><!-- JMS发送数据类 -->
+    	<property name="xmlPathName" value="config/runstatus.xml"/><!--要修改程序启动状态的ml的文件位置及名称 -->
+    </bean>
+    
+    <!-- 心跳-->
+    <bean id="heart" class="com.singlee.priceengine.heart.Heart" destroy-method="serverStop">
+    	<property name="serverPort" value="8888"></property><!-- 心跳端口 -->
+    </bean>
+    
+    
+    	<!-- 人行价格 -->
+	<bean id="peoplePriceConfig" class="com.singlee.webpageserver.PeoplePriceConfig" singleton="false">
+      	<property name="hour" value="9"></property>	<!-- 开始小时 -->	
+      	<property name="minute" value ="00"/><!-- 开始分 -->	
+       	<property name="second" value="0"/><!-- 开始秒 -->	
+       	<property name="time" value="86400000"/><!-- 执行间隔 -->	
+       
+	</bean>
+	
+	
+</beans>

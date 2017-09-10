@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="jndiTemplate" class="org.springframework.jndi.JndiTemplate">
+	<property name="environment">        
+        <props>            
+                <prop key="java.naming.factory.initial">
+                        weblogic.jndi.WLInitialContextFactory 
+                </prop>
+            	<prop key="java.naming.provider.url">
+
+                            t3://127.0.0.1:7001
+
+                 </prop>
+ 
+
+          </props>   
+       </property>
+</bean>
+</beans>
