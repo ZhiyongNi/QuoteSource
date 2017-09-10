@@ -110,7 +110,7 @@ public class MarketPriceGUI extends javax.swing.JFrame {
                             if (startThread != null) {
                                 startThread.stop();
                             }
-                            webPageServer.ServerStop();
+                            webPageServer.stopServer();
                             if (atx != null) {
                                 heart.stop();
                                 atx.destroy();
@@ -137,10 +137,10 @@ public class MarketPriceGUI extends javax.swing.JFrame {
                                 if (startThread != null) {
                                     startThread.stop();
                                 }
-                                webPageServer.ServerStop();
+                                webPageServer.stopServer();
                             }
                         });
-                        if (webPageServer.isServerStop()) {
+                        if (webPageServer.isAlive_Server()) {
                             start.setEnabled(true);
                             stop.setEnabled(false);
                             exMsg.requestFocus();

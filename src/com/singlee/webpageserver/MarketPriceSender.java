@@ -19,10 +19,10 @@ import com.singlee.priceengine.common.JmsSender;
 public class MarketPriceSender {
 
     private List QuoteData_List = new ArrayList();
-    private Logger logger = Logger.getLogger(this.getClass());// 日志
+    private Logger Logger_Assistant = Logger.getLogger(this.getClass());// 日志
 
-    private JmsSender jmsSender;// jms发送类
-    private ExceptionSender exSender;// jms异常发送类
+    private JmsSender JmsSender;// jms发送类
+    private ExceptionSender exJmsSender;// jms异常发送类
     private CommWriteFile commWriteFile;// 写文件
 
     public MarketPriceSender() {
@@ -30,58 +30,53 @@ public class MarketPriceSender {
 
     /**
      * 黄正良 发送数据
+     *
      * @throws java.lang.Exception
      */
     public void catchQuoteData() throws Exception {// 解析网页源获得要发送的数据
+        getLogger_Assistant().debug("MarketPriceSender()调用catchQuoteData()抓取网页结束……");
         switch (MarketPriceServer.serverCode) {
             case 382:// 中行
-                QuoteData_List = new MarketPriceCatch_BCHO().catchQuote();
+                setQuoteData_List(new MarketPriceCatch_BCHO().catchQuote());
                 break;
             case 441:// 工行
-                QuoteData_List = new MarketPriceCatch_ICBC().catchQuote();
+                setQuoteData_List(new MarketPriceCatch_ICBC().catchQuote());
                 break;
             case 442:// 农行
-                QuoteData_List = new MarketPriceCatch_ABCI().catchQuote();
+                setQuoteData_List(new MarketPriceCatch_ABCI().catchQuote());
                 break;
             case 511:// 货币网
-                QuoteData_List = new MarketPriceCatch_Chinamoney().catchQuote();
+                setQuoteData_List(new MarketPriceCatch_Chinamoney().catchQuote());
                 break;
         }
-        logger.debug("主线程调用getJmsData()抓取网页结束……");
-        for (int i = 0; i < QuoteData_List.size(); i++) {
-            String msg = getShowMsg(QuoteData_List.get(i).toString());
+        for (int i = 0; i < getQuoteData_List().size(); i++) {
+            String msg = getShowMsg(getQuoteData_List().get(i).toString());
 
-            logger.debug("主线程开始将组装抓取到的数据写入文件");
+            getLogger_Assistant().debug("主线程开始将组装抓取到的数据写入文件");
             try {
-                // 将数据写入文件
-                commWriteFile.writeFile(msg);
-                logger.debug("主线程开始将组装抓取到的数据写入文件完成！");
+                commWriteFile.writeFile(msg);// 将数据写入文件
+                getLogger_Assistant().debug("主线程开始将组装抓取到的数据写入文件完成！");
             } catch (Exception e) {
                 sendExMsg("000", "写文件出现异常详情请查看日志！", e);
             }
 
-            logger.debug("主线程开始将组装抓取到的数据在界面显示");
+            getLogger_Assistant().debug("主线程开始将组装抓取到的数据在界面显示");
             showQuoteMsg(msg);
-            logger.debug("主线程开始将组装抓取到的数据在界面显示完成");
-
+            getLogger_Assistant().debug("主线程开始将组装抓取到的数据在界面显示完成");
         }
-        logger.debug("主线程将组装抓取到的数据写入文件并显示完成……");
+        getLogger_Assistant().debug("主线程将组装抓取到的数据写入文件并显示完成……");
     }
 
     public void sendQuoteData() throws Exception {
-        String quotes = getQuotes(QuoteData_List);
-        if (quotes == null) {
-            logger.debug("主线程开始休眠……");
-            //threadWait(new Object(), MarketPriceServer.reCatchPageTime);// 重新抓取数据的时间
-            logger.debug("主线程休眠完成……");
-        } else {
-            logger.debug("主线程开始发送组装的数据……");
-            sendMessage(quotes);
-            logger.debug("主线程发送组装的数据完成……");
+        String quotes = getQuotes(getQuoteData_List());
 
-            logger.debug("主线程将jms通信状况在界面显示……");
-            logger.debug("主线程将jms通信状况在界面显示完成……");
-        }
+        getLogger_Assistant().debug("主线程开始发送组装的数据……");
+        sendMessage(quotes);
+        getLogger_Assistant().debug("主线程发送组装的数据完成……");
+
+        getLogger_Assistant().debug("主线程将jms通信状况在界面显示……");
+        getLogger_Assistant().debug("主线程将jms通信状况在界面显示完成……");
+
     }
 
     /**
@@ -93,22 +88,20 @@ public class MarketPriceSender {
      */
     public void sendExMsg(String code, String msg, Exception e) {
         e.printStackTrace();
-        logger.error(msg, e);
+        getLogger_Assistant().error(msg, e);
         try {
-            exSender.sendMessage(code + "#" + MarketPriceServer.serverName + msg + "#" + (new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())));
+            this.exJmsSender.sendMessage(code + "#" + MarketPriceServer.serverName + msg + "#" + (new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())));
         } catch (Exception ex) {
-            logger.error(ex);
+            getLogger_Assistant().error(ex);
             showErrorMsg("JMS通信出现异常！");
         }
     }
-
- 
 
     /**
      * 黄正良 发送jms数据
      */
     public void sendMessage(String msg) throws JmsException {
-        getJmsSender().sendMessage(msg);
+        this.JmsSender.sendMessage(msg);
     }
 
     /**
@@ -117,7 +110,7 @@ public class MarketPriceSender {
      * @param errMsg
      */
     public void showErrorMsg(final String errMsg) {
-        logger.debug(errMsg);
+        getLogger_Assistant().debug(errMsg);
         if (MarketPriceGUI.exMsg != null) {
             SwingUtilities.invokeLater(new Thread() {
 
@@ -179,7 +172,7 @@ public class MarketPriceSender {
                 // 显示获取网页数据条数
                 showErrorMsg("已获取" + list.size() + "条网页源的数据！");
 
-                logger.debug("主线程开始组装抓取到的数据……");
+                getLogger_Assistant().debug("主线程开始组装抓取到的数据……");
                 StringBuilder s = new StringBuilder();
                 Iterator it = list.iterator();// 遍历解析到的网页源的数据并组装成发送的数据
                 while (it.hasNext()) { // 将报价数据添加到字符串中
@@ -189,23 +182,23 @@ public class MarketPriceSender {
                     }
 
                 }
-                logger.debug("主线程组装抓取到的数据完成……");
+                getLogger_Assistant().debug("主线程组装抓取到的数据完成……");
 
                 if (s != null && !"".equals(s.toString().trim())) {
                     s = new StringBuilder(MarketPriceServer.serverCode
                             + "&"
                             + s.delete(s.length() - 1, s.length())
                                     .toString());
-                    logger.debug("主线程判断组装抓取到的数据是完整的正常返回");
+                    getLogger_Assistant().debug("主线程判断组装抓取到的数据是完整的正常返回");
                     return s.toString();
                 } else {
-                    logger.debug("主线程判断组装抓取到的数据不是完整的返回为空");
+                    getLogger_Assistant().debug("主线程判断组装抓取到的数据不是完整的返回为空");
                     return null;
                 }
 
             }
         } catch (Exception e) {
-            logger.error("组装数据时发生异常返数据为空", e);
+            getLogger_Assistant().error("组装数据时发生异常返数据为空", e);
             return null;
         }
     }
@@ -234,19 +227,53 @@ public class MarketPriceSender {
         this.commWriteFile = commWriteFile;
     }
 
-    public ExceptionSender getExSender() {
-        return exSender;
-    }
-
-    public void setExSender(ExceptionSender exSender) {
-        this.exSender = exSender;
-    }
-
     public JmsSender getJmsSender() {
-        return jmsSender;
+        return JmsSender;
     }
 
     public void setJmsSender(JmsSender jmsSender) {
-        this.jmsSender = jmsSender;
+        this.JmsSender = jmsSender;
+    }
+
+    /**
+     * @return the QuoteData_List
+     */
+    public List getQuoteData_List() {
+        return QuoteData_List;
+    }
+
+    /**
+     * @param QuoteData_List the QuoteData_List to set
+     */
+    public void setQuoteData_List(List QuoteData_List) {
+        this.QuoteData_List = QuoteData_List;
+    }
+
+    /**
+     * @return the exJmsSender
+     */
+    public ExceptionSender getExJmsSender() {
+        return exJmsSender;
+    }
+
+    /**
+     * @param exJmsSender the exJmsSender to set
+     */
+    public void setExJmsSender(ExceptionSender exJmsSender) {
+        this.exJmsSender = exJmsSender;
+    }
+
+    /**
+     * @return the Logger_Assistant
+     */
+    public Logger getLogger_Assistant() {
+        return Logger_Assistant;
+    }
+
+    /**
+     * @param Logger_Assistant the Logger_Assistant to set
+     */
+    public void setLogger_Assistant(Logger Logger_Assistant) {
+        this.Logger_Assistant = Logger_Assistant;
     }
 }

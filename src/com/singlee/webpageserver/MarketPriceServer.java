@@ -15,7 +15,6 @@ import org.springframework.jms.JmsException;
 
 public class MarketPriceServer {
 
-    public static boolean isStart = false;//发送数据的线程启动状态
     public static String serverName;//网页源名称
     public static int serverCode;//网页源代码
     public static int reCatchPageTime;//重新抓取网页的频率
@@ -23,13 +22,12 @@ public class MarketPriceServer {
     public static int cls;//超过些值清一次屏
     private ExceptionSender exSender;// jms异常发送类
 
-    private WebPageCommonDAOInterface sendDataDAO;//发送数据的线程
-    private Logger logger = Logger.getLogger(this
-            .getClass());
+    private Logger logger = Logger.getLogger(this.getClass());
     private String xmlPathName;
 
-    private boolean isAlive_ServerThread = true;// 判断线程是否启动
-    private boolean isServerStop = true;// 判断线程是否关闭
+    public static boolean isAlive_ServerThread = true;// 判断线程是否启动
+    public static boolean isAlive_Sender_ManageThread = true;// 判断线程是否启动
+    public static boolean isAlive_Sender_WorkThread = true;// 判断线程是否启动
 
     public static Sender_ManageThread Sender_ManageThread; // 管理发送数据线程的线程
     public static Sender_WorkThread Sender_WorkThread = null;// 发送数据线程
@@ -66,7 +64,7 @@ public class MarketPriceServer {
 
         public void run() {
             logger.debug("管理线程开始起动……");
-            while (MarketPriceServer.isStart) {
+            while (MarketPriceServer.isAlive_ServerThread) {
                 logger.debug("管理线程循环开始……");
 
                 logger.debug("管理线程开始判断主线程是否在运行……");
@@ -94,7 +92,7 @@ public class MarketPriceServer {
             int k = 1; // jms通信状态 1 正常 0 断开
 
             logger.debug("主线程开始运行……");
-            while (MarketPriceServer.isStart) {
+            while (MarketPriceServer.isAlive_ServerThread) {
                 MarketPriceSender MP = new MarketPriceSender();
 
                 logger.debug("主线程循环开始运行……");
@@ -141,7 +139,20 @@ public class MarketPriceServer {
                 }
 
                 try {
-                    MP.sendQuoteData();
+
+                    if (MP.getQuoteData_List() == null) {
+                        logger.debug("主线程开始休眠……");
+                        //threadWait(new Object(), MarketPriceServer.reCatchPageTime);// 重新抓取数据的时间
+                        logger.debug("主线程休眠完成……");
+                    } else {
+                        logger.debug("主线程开始发送组装的数据……");
+                        MP.sendQuoteData();
+                        logger.debug("主线程发送组装的数据完成……");
+
+                        logger.debug("主线程将jms通信状况在界面显示……");
+                        logger.debug("主线程将jms通信状况在界面显示完成……");
+                    }
+
                     logger.debug("主线程开始将组装抓取到的数据写入文件并显示……");
                     // 将组装好的数据记录在文件中
 
@@ -196,7 +207,7 @@ public class MarketPriceServer {
             }
         } catch (Exception e) {
             sendExMsg("000", "停止出现异常", e);
-            isServerStop = false;// 改变发送数据的线程的状为停止
+            isAlive_ServerThread = false;// 改变发送数据的线程的状为停止
         }
     }
 
@@ -206,13 +217,7 @@ public class MarketPriceServer {
     public boolean isAlive_Server() {
         return isAlive_ServerThread;
     }
-
-    /**
-     * 黄正良 判断服务器是否停止
-     */
-    //  public boolean isServerStop() {
-    //   return isAlive_ServerThread;
-    //   }
+  
     /**
      * 黄正良 线程等待
      *
@@ -320,14 +325,6 @@ public class MarketPriceServer {
         MarketPriceServer.serverCode = serverCode;
     }
 
-    public WebPageCommonDAOInterface getSendDataDAO() {
-        return sendDataDAO;
-    }
-
-    public void setSendDataDAO(WebPageCommonDAOInterface sendDataDAO) {
-        this.sendDataDAO = sendDataDAO;
-    }
-
     public int getReCatchPageTime() {
         return reCatchPageTime;
     }
@@ -342,24 +339,6 @@ public class MarketPriceServer {
 
     public void setServerName(String serverName) {
         this.serverName = serverName;
-    }
-
-    //此方法启动源
-    //public void serverStart() {
-    //  getSendDataDAO().serverStart();
-    // }
-    //此方法关闭源
-    public void ServerStop() {
-        getSendDataDAO().serverStop();
-    }
-
-    //判断服务器是否启动
-    // public boolean isAlive_Server() {
-    //    return getSendDataDAO().isServerStart();
-    // }
-    //判断服务器是否停止
-    public boolean isServerStop() {
-        return getSendDataDAO().isServerStop();
     }
 
     public int getCls() {
