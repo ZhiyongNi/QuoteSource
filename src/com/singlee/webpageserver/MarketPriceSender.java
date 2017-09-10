@@ -21,9 +21,6 @@ public class MarketPriceSender {
     private List QuoteData_List = new ArrayList();
     private Logger logger = Logger.getLogger(this.getClass());// 日志
 
-    private boolean isServerStart = true;// 判断线程是否启动
-    private boolean isServerStop = true;// 判断线程是否关闭
-
     private JmsSender jmsSender;// jms发送类
     private ExceptionSender exSender;// jms异常发送类
     private CommWriteFile commWriteFile;// 写文件
@@ -33,6 +30,7 @@ public class MarketPriceSender {
 
     /**
      * 黄正良 发送数据
+     * @throws java.lang.Exception
      */
     public void catchQuoteData() throws Exception {// 解析网页源获得要发送的数据
         switch (MarketPriceServer.serverCode) {
@@ -74,7 +72,7 @@ public class MarketPriceSender {
         String quotes = getQuotes(QuoteData_List);
         if (quotes == null) {
             logger.debug("主线程开始休眠……");
-            threadWait(new Object(), MarketPriceServer.reCatchPageTime);// 重新抓取数据的时间
+            //threadWait(new Object(), MarketPriceServer.reCatchPageTime);// 重新抓取数据的时间
             logger.debug("主线程休眠完成……");
         } else {
             logger.debug("主线程开始发送组装的数据……");
@@ -104,22 +102,7 @@ public class MarketPriceSender {
         }
     }
 
-    /**
-     * 黄正良 线程等待
-     *
-     * @param obj
-     * @param time
-     */
-    public void threadWait(Object obj, final int time) {
-        try {
-            synchronized (obj) {
-                obj.wait(time);
-            }
-        } catch (Exception e) {
-            logger.debug("管理线程休眠发生异常……");
-            logger.error(e);
-        }
-    }
+ 
 
     /**
      * 黄正良 发送jms数据
