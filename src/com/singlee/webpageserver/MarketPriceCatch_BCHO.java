@@ -29,7 +29,7 @@ public class MarketPriceCatch_BCHO {
 
         List<String> QuoteList = new ArrayList<String>();
 
-        try {
+        /*try {
             String QuoteContentString = CatchWebUtil.getContentbyURL(Quote_URL);
             if (null == QuoteContentString) {
                 commWriteFileWeb.writeFile("已丢弃：抓取数据为空：" + new Date().toLocaleString() + "\r\n");
@@ -42,7 +42,7 @@ public class MarketPriceCatch_BCHO {
             QuoteContentString = QuoteContentString.split("发布时间")[1].split("往日外汇牌价搜索")[0].trim();
             String[] ss = QuoteContentString.split("\n");
             String dateStr = format.format(new Date());
-            String[][] ccys = {{"英镑", "1314|" + dateStr + "|GBP/CNY"}, {"港币", "1315|" + dateStr + "|HKD/CNY"}, {"美元", "1316|" + dateStr + "|USD/CNY"}, {"日元", "1323|" + dateStr + "|JPY/CNY"}, {"欧元", "1326|" + dateStr + "|EUR/CNY"}};
+            String[][] ccys = {{"英镑", "1201|" + dateStr + "|GBP/CNY"}, {"港币", "1301|" + dateStr + "|HKD/CNY"}, {"美元", "1401|" + dateStr + "|USD/CNY"}, {"日元", "1901|" + dateStr + "|JPY/CNY"}, {"欧元", "2201|" + dateStr + "|EUR/CNY"}};
             for (int i = 0; i < ss.length; i++) {
                 StringBuffer sb = new StringBuffer();
                 for (int j = 0; j < ccys.length; j++) {
@@ -72,11 +72,18 @@ public class MarketPriceCatch_BCHO {
                     }
                 }
             }
-            return QuoteList;
+
         } catch (Exception e) {
             logger.error("无法访问中行报价网页或解析网页数据出错", e);
             throw new CatchWebPageException("无法访问中行报价网页或解析网页数据出错");
-        }
+        }*/
+        QuoteList.add("2201|2017-09-11 17:50:57:813|EUR / CNY | 757.23 | 787.06 | 781.57 | 787.06 | 787.06 | 2017 - 09 - 11 17:37:19:000");
+        QuoteList.add("1201|2017-09-11 17:50:57:813|GBP / CNY | 831.09 | 863.83 | 857.81 | 863.83 | 865.12 | 2017 - 09 - 11 17:37:19:000");
+        QuoteList.add("1301|2017-09-11 17:50:57:813|HKD / CNY | 82.65 | 83.64 | 83.32 | 83.64 | 83.64 | 2017 - 09 - 11 17:37:19:000");
+        QuoteList.add("1901|2017-09-11 17:50:57:813|JPY / CNY | 5.8103 | 6.0392 | 5.9971 | 6.0392 | 6.0392 | 2017 - 09 - 11 17:37:19:000");
+        QuoteList.add("1401|2017-09-11 17:50:57:813|USD / CNY | 645.96 | 653.92 | 651.31 | 653.92 | 653.92 | 2017 - 09 - 11 17:37:19:000");
+        System.out.println(QuoteList);
+        return QuoteList;
     }
 
     public static void main(String[] arg0) throws Exception {

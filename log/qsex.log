@@ -13642,3 +13642,229 @@ java.text.ParseException: Unparseable date: "755.05"
 java.lang.ArrayIndexOutOfBoundsException: 1
 	at com.singlee.webpageserver.MarketPriceCatch_Chinamoney.catchQuote(MarketPriceCatch_Chinamoney.java:48)
 	at com.singlee.webpageserver.MarketPriceCatch_Chinamoney.main(MarketPriceCatch_Chinamoney.java:91)
+[framework] 2017-09-10 21:40:31,801 - org.springframework.context.support.ClassPathXmlApplicationContext -0    [main] INFO  org.springframework.context.support.ClassPathXmlApplicationContext  - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@76b0bfab: display name [org.springframework.context.support.ClassPathXmlApplicationContext@76b0bfab]; startup date [Sun Sep 10 21:40:31 CST 2017]; root of context hierarchy
+[framework] 2017-09-10 21:40:31,838 - org.springframework.util.ClassUtils -37   [main] DEBUG org.springframework.util.ClassUtils  - Class [org.apache.commons.collections.map.CaseInsensitiveMap] or one of its dependencies is not present: java.lang.ClassNotFoundException: org.apache.commons.collections.map.CaseInsensitiveMap
+[framework] 2017-09-10 21:40:31,838 - org.springframework.util.ClassUtils -37   [main] DEBUG org.springframework.util.ClassUtils  - Class [edu.emory.mathcs.backport.java.util.concurrent.ConcurrentHashMap] or one of its dependencies is not present: java.lang.ClassNotFoundException: edu.emory.mathcs.backport.java.util.concurrent.ConcurrentHashMap
+[framework] 2017-09-10 21:40:31,838 - org.springframework.core.CollectionFactory -37   [main] DEBUG org.springframework.core.CollectionFactory  - Falling back to plain synchronized [java.util.HashMap] for concurrent map
+[framework] 2017-09-10 21:40:31,838 - org.springframework.core.CollectionFactory -37   [main] DEBUG org.springframework.core.CollectionFactory  - Falling back to plain synchronized [java.util.HashMap] for concurrent map
+[framework] 2017-09-10 21:40:31,838 - org.springframework.core.CollectionFactory -37   [main] DEBUG org.springframework.core.CollectionFactory  - Falling back to plain synchronized [java.util.HashMap] for concurrent map
+[framework] 2017-09-10 21:40:31,838 - org.springframework.core.CollectionFactory -37   [main] DEBUG org.springframework.core.CollectionFactory  - Falling back to plain synchronized [java.util.HashMap] for concurrent map
+[framework] 2017-09-10 21:40:31,838 - org.springframework.core.CollectionFactory -37   [main] DEBUG org.springframework.core.CollectionFactory  - Falling back to plain synchronized [java.util.HashMap] for concurrent map
+[framework] 2017-09-10 21:40:31,838 - org.springframework.core.CollectionFactory -37   [main] DEBUG org.springframework.core.CollectionFactory  - Falling back to plain synchronized [java.util.HashMap] for concurrent map
+[framework] 2017-09-10 21:40:31,838 - org.springframework.core.CollectionFactory -37   [main] DEBUG org.springframework.core.CollectionFactory  - Falling back to plain synchronized [java.util.HashMap] for concurrent map
+[framework] 2017-09-10 21:40:31,854 - org.springframework.core.CollectionFactory -53   [main] DEBUG org.springframework.core.CollectionFactory  - Falling back to plain synchronized [java.util.HashMap] for concurrent map
+[framework] 2017-09-10 21:40:31,885 - org.springframework.beans.factory.xml.XmlBeanDefinitionReader -84   [main] INFO  org.springframework.beans.factory.xml.XmlBeanDefinitionReader  - Loading XML bean definitions from class path resource [config/server.xml]
+[framework] 2017-09-10 21:40:31,901 - org.springframework.beans.factory.xml.DefaultDocumentLoader -100  [main] DEBUG org.springframework.beans.factory.xml.DefaultDocumentLoader  - Using JAXP provider [weblogic.xml.jaxp.RegistryDocumentBuilderFactory]
+[framework] 2017-09-10 21:40:31,954 - org.springframework.beans.factory.xml.BeansDtdResolver -153  [main] DEBUG org.springframework.beans.factory.xml.BeansDtdResolver  - Found beans DTD [http://www.springframework.org/dtd/spring-beans.dtd] in classpath: spring-beans.dtd
+[framework] 2017-09-10 21:40:31,986 - org.springframework.beans.factory.xml.DefaultBeanDefinitionDocumentReader -185  [main] DEBUG org.springframework.beans.factory.xml.DefaultBeanDefinitionDocumentReader  - Loading bean definitions
+[framework] 2017-09-10 21:40:32,001 - org.springframework.beans.factory.xml.XmlBeanDefinitionReader -200  [main] DEBUG org.springframework.beans.factory.xml.XmlBeanDefinitionReader  - Loaded 8 bean definitions from location pattern [config/server.xml]
+[framework] 2017-09-10 21:40:32,001 - org.springframework.context.support.ClassPathXmlApplicationContext -200  [main] INFO  org.springframework.context.support.ClassPathXmlApplicationContext  - Bean factory for application context [org.springframework.context.support.ClassPathXmlApplicationContext@76b0bfab]: org.springframework.beans.factory.support.DefaultListableBeanFactory@47542153
+[framework] 2017-09-10 21:40:32,001 - org.springframework.context.support.ClassPathXmlApplicationContext -200  [main] DEBUG org.springframework.context.support.ClassPathXmlApplicationContext  - 8 beans defined in org.springframework.context.support.ClassPathXmlApplicationContext@76b0bfab: display name [org.springframework.context.support.ClassPathXmlApplicationContext@76b0bfab]; startup date [Sun Sep 10 21:40:31 CST 2017]; root of context hierarchy
+[framework] 2017-09-10 21:40:32,020 - org.springframework.beans.factory.support.DefaultListableBeanFactory -219  [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory  - Ignoring bean class loading failure for bean 'quotePrice'
+org.springframework.beans.factory.CannotLoadBeanClassException: Cannot find class [com.singlee.webpageserver.QuotePrice] for bean with name 'quotePrice' defined in class path resource [config/server.xml]; nested exception is java.lang.ClassNotFoundException: com.singlee.webpageserver.QuotePrice
+	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveBeanClass(AbstractBeanFactory.java:1138)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.predictBeanType(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.isFactoryBean(AbstractBeanFactory.java:1174)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanNamesForType(DefaultListableBeanFactory.java:222)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:506)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:363)
+	at org.springframework.context.support.ClassPathXmlApplicationContext.<init>(ClassPathXmlApplicationContext.java:139)
+	at org.springframework.context.support.ClassPathXmlApplicationContext.<init>(ClassPathXmlApplicationContext.java:93)
+	at com.singlee.webpageserver.MarketPriceGUI.<clinit>(MarketPriceGUI.java:58)
+Caused by: java.lang.ClassNotFoundException: com.singlee.webpageserver.QuotePrice
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:381)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:424)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:331)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:357)
+	at org.springframework.util.ClassUtils.forName(ClassUtils.java:249)
+	at org.springframework.beans.factory.support.AbstractBeanDefinition.resolveBeanClass(AbstractBeanDefinition.java:381)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveBeanClass(AbstractBeanFactory.java:1135)
+	... 8 more
+[framework] 2017-09-10 21:40:32,022 - org.springframework.beans.factory.support.DefaultListableBeanFactory -221  [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory  - Ignoring bean class loading failure for bean 'catchQuote'
+org.springframework.beans.factory.CannotLoadBeanClassException: Cannot find class [com.singlee.webpageserver.CatchQuote] for bean with name 'catchQuote' defined in class path resource [config/server.xml]; nested exception is java.lang.ClassNotFoundException: com.singlee.webpageserver.CatchQuote
+	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveBeanClass(AbstractBeanFactory.java:1138)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.predictBeanType(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.isFactoryBean(AbstractBeanFactory.java:1174)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanNamesForType(DefaultListableBeanFactory.java:222)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:506)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:363)
+	at org.springframework.context.support.ClassPathXmlApplicationContext.<init>(ClassPathXmlApplicationContext.java:139)
+	at org.springframework.context.support.ClassPathXmlApplicationContext.<init>(ClassPathXmlApplicationContext.java:93)
+	at com.singlee.webpageserver.MarketPriceGUI.<clinit>(MarketPriceGUI.java:58)
+Caused by: java.lang.ClassNotFoundException: com.singlee.webpageserver.CatchQuote
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:381)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:424)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:331)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:357)
+	at org.springframework.util.ClassUtils.forName(ClassUtils.java:249)
+	at org.springframework.beans.factory.support.AbstractBeanDefinition.resolveBeanClass(AbstractBeanDefinition.java:381)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveBeanClass(AbstractBeanFactory.java:1135)
+	... 8 more
+[framework] 2017-09-10 21:40:32,022 - org.springframework.beans.factory.support.DefaultListableBeanFactory -221  [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory  - Ignoring bean class loading failure for bean 'peoplePriceConfig'
+org.springframework.beans.factory.CannotLoadBeanClassException: Cannot find class [com.singlee.webpageserver.PeoplePriceConfig] for bean with name 'peoplePriceConfig' defined in class path resource [config/server.xml]; nested exception is java.lang.ClassNotFoundException: com.singlee.webpageserver.PeoplePriceConfig
+	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveBeanClass(AbstractBeanFactory.java:1138)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.predictBeanType(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.isFactoryBean(AbstractBeanFactory.java:1174)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanNamesForType(DefaultListableBeanFactory.java:222)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:506)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:363)
+	at org.springframework.context.support.ClassPathXmlApplicationContext.<init>(ClassPathXmlApplicationContext.java:139)
+	at org.springframework.context.support.ClassPathXmlApplicationContext.<init>(ClassPathXmlApplicationContext.java:93)
+	at com.singlee.webpageserver.MarketPriceGUI.<clinit>(MarketPriceGUI.java:58)
+Caused by: java.lang.ClassNotFoundException: com.singlee.webpageserver.PeoplePriceConfig
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:381)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:424)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:331)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:357)
+	at org.springframework.util.ClassUtils.forName(ClassUtils.java:249)
+	at org.springframework.beans.factory.support.AbstractBeanDefinition.resolveBeanClass(AbstractBeanDefinition.java:381)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveBeanClass(AbstractBeanFactory.java:1135)
+	... 8 more
+[framework] 2017-09-10 21:40:32,022 - org.springframework.beans.factory.support.DefaultListableBeanFactory -221  [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory  - Ignoring bean class loading failure for bean 'quotePrice'
+org.springframework.beans.factory.CannotLoadBeanClassException: Cannot find class [com.singlee.webpageserver.QuotePrice] for bean with name 'quotePrice' defined in class path resource [config/server.xml]; nested exception is java.lang.ClassNotFoundException: com.singlee.webpageserver.QuotePrice
+	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveBeanClass(AbstractBeanFactory.java:1138)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.predictBeanType(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.isFactoryBean(AbstractBeanFactory.java:1174)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanNamesForType(DefaultListableBeanFactory.java:222)
+	at org.springframework.context.support.AbstractApplicationContext.registerBeanPostProcessors(AbstractApplicationContext.java:564)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:366)
+	at org.springframework.context.support.ClassPathXmlApplicationContext.<init>(ClassPathXmlApplicationContext.java:139)
+	at org.springframework.context.support.ClassPathXmlApplicationContext.<init>(ClassPathXmlApplicationContext.java:93)
+	at com.singlee.webpageserver.MarketPriceGUI.<clinit>(MarketPriceGUI.java:58)
+Caused by: java.lang.ClassNotFoundException: com.singlee.webpageserver.QuotePrice
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:381)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:424)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:331)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:357)
+	at org.springframework.util.ClassUtils.forName(ClassUtils.java:249)
+	at org.springframework.beans.factory.support.AbstractBeanDefinition.resolveBeanClass(AbstractBeanDefinition.java:381)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveBeanClass(AbstractBeanFactory.java:1135)
+	... 8 more
+[framework] 2017-09-10 21:40:32,022 - org.springframework.beans.factory.support.DefaultListableBeanFactory -221  [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory  - Ignoring bean class loading failure for bean 'catchQuote'
+org.springframework.beans.factory.CannotLoadBeanClassException: Cannot find class [com.singlee.webpageserver.CatchQuote] for bean with name 'catchQuote' defined in class path resource [config/server.xml]; nested exception is java.lang.ClassNotFoundException: com.singlee.webpageserver.CatchQuote
+	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveBeanClass(AbstractBeanFactory.java:1138)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.predictBeanType(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.isFactoryBean(AbstractBeanFactory.java:1174)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanNamesForType(DefaultListableBeanFactory.java:222)
+	at org.springframework.context.support.AbstractApplicationContext.registerBeanPostProcessors(AbstractApplicationContext.java:564)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:366)
+	at org.springframework.context.support.ClassPathXmlApplicationContext.<init>(ClassPathXmlApplicationContext.java:139)
+	at org.springframework.context.support.ClassPathXmlApplicationContext.<init>(ClassPathXmlApplicationContext.java:93)
+	at com.singlee.webpageserver.MarketPriceGUI.<clinit>(MarketPriceGUI.java:58)
+Caused by: java.lang.ClassNotFoundException: com.singlee.webpageserver.CatchQuote
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:381)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:424)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:331)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:357)
+	at org.springframework.util.ClassUtils.forName(ClassUtils.java:249)
+	at org.springframework.beans.factory.support.AbstractBeanDefinition.resolveBeanClass(AbstractBeanDefinition.java:381)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveBeanClass(AbstractBeanFactory.java:1135)
+	... 8 more
+[framework] 2017-09-10 21:40:32,022 - org.springframework.beans.factory.support.DefaultListableBeanFactory -221  [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory  - Ignoring bean class loading failure for bean 'peoplePriceConfig'
+org.springframework.beans.factory.CannotLoadBeanClassException: Cannot find class [com.singlee.webpageserver.PeoplePriceConfig] for bean with name 'peoplePriceConfig' defined in class path resource [config/server.xml]; nested exception is java.lang.ClassNotFoundException: com.singlee.webpageserver.PeoplePriceConfig
+	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveBeanClass(AbstractBeanFactory.java:1138)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.predictBeanType(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.isFactoryBean(AbstractBeanFactory.java:1174)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanNamesForType(DefaultListableBeanFactory.java:222)
+	at org.springframework.context.support.AbstractApplicationContext.registerBeanPostProcessors(AbstractApplicationContext.java:564)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:366)
+	at org.springframework.context.support.ClassPathXmlApplicationContext.<init>(ClassPathXmlApplicationContext.java:139)
+	at org.springframework.context.support.ClassPathXmlApplicationContext.<init>(ClassPathXmlApplicationContext.java:93)
+	at com.singlee.webpageserver.MarketPriceGUI.<clinit>(MarketPriceGUI.java:58)
+Caused by: java.lang.ClassNotFoundException: com.singlee.webpageserver.PeoplePriceConfig
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:381)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:424)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:331)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:357)
+	at org.springframework.util.ClassUtils.forName(ClassUtils.java:249)
+	at org.springframework.beans.factory.support.AbstractBeanDefinition.resolveBeanClass(AbstractBeanDefinition.java:381)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveBeanClass(AbstractBeanFactory.java:1135)
+	... 8 more
+[framework] 2017-09-10 21:40:32,022 - org.springframework.context.support.ClassPathXmlApplicationContext -221  [main] DEBUG org.springframework.context.support.ClassPathXmlApplicationContext  - Unable to locate MessageSource with name 'messageSource': using default [org.springframework.context.support.DelegatingMessageSource@1184ab05]
+[framework] 2017-09-10 21:40:32,022 - org.springframework.context.support.ClassPathXmlApplicationContext -221  [main] DEBUG org.springframework.context.support.ClassPathXmlApplicationContext  - Unable to locate ApplicationEventMulticaster with name 'applicationEventMulticaster': using default [org.springframework.context.event.SimpleApplicationEventMulticaster@78b66d36]
+[framework] 2017-09-10 21:40:32,022 - org.springframework.beans.factory.support.DefaultListableBeanFactory -221  [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory  - Ignoring bean class loading failure for bean 'quotePrice'
+org.springframework.beans.factory.CannotLoadBeanClassException: Cannot find class [com.singlee.webpageserver.QuotePrice] for bean with name 'quotePrice' defined in class path resource [config/server.xml]; nested exception is java.lang.ClassNotFoundException: com.singlee.webpageserver.QuotePrice
+	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveBeanClass(AbstractBeanFactory.java:1138)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.predictBeanType(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.isFactoryBean(AbstractBeanFactory.java:1174)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanNamesForType(DefaultListableBeanFactory.java:222)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeansOfType(DefaultListableBeanFactory.java:303)
+	at org.springframework.context.support.AbstractApplicationContext.getBeansOfType(AbstractApplicationContext.java:948)
+	at org.springframework.context.support.AbstractApplicationContext.registerListeners(AbstractApplicationContext.java:702)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:378)
+	at org.springframework.context.support.ClassPathXmlApplicationContext.<init>(ClassPathXmlApplicationContext.java:139)
+	at org.springframework.context.support.ClassPathXmlApplicationContext.<init>(ClassPathXmlApplicationContext.java:93)
+	at com.singlee.webpageserver.MarketPriceGUI.<clinit>(MarketPriceGUI.java:58)
+Caused by: java.lang.ClassNotFoundException: com.singlee.webpageserver.QuotePrice
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:381)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:424)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:331)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:357)
+	at org.springframework.util.ClassUtils.forName(ClassUtils.java:249)
+	at org.springframework.beans.factory.support.AbstractBeanDefinition.resolveBeanClass(AbstractBeanDefinition.java:381)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveBeanClass(AbstractBeanFactory.java:1135)
+	... 10 more
+[framework] 2017-09-10 21:40:32,022 - org.springframework.beans.factory.support.DefaultListableBeanFactory -221  [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory  - Ignoring bean class loading failure for bean 'catchQuote'
+org.springframework.beans.factory.CannotLoadBeanClassException: Cannot find class [com.singlee.webpageserver.CatchQuote] for bean with name 'catchQuote' defined in class path resource [config/server.xml]; nested exception is java.lang.ClassNotFoundException: com.singlee.webpageserver.CatchQuote
+	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveBeanClass(AbstractBeanFactory.java:1138)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.predictBeanType(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.isFactoryBean(AbstractBeanFactory.java:1174)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanNamesForType(DefaultListableBeanFactory.java:222)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeansOfType(DefaultListableBeanFactory.java:303)
+	at org.springframework.context.support.AbstractApplicationContext.getBeansOfType(AbstractApplicationContext.java:948)
+	at org.springframework.context.support.AbstractApplicationContext.registerListeners(AbstractApplicationContext.java:702)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:378)
+	at org.springframework.context.support.ClassPathXmlApplicationContext.<init>(ClassPathXmlApplicationContext.java:139)
+	at org.springframework.context.support.ClassPathXmlApplicationContext.<init>(ClassPathXmlApplicationContext.java:93)
+	at com.singlee.webpageserver.MarketPriceGUI.<clinit>(MarketPriceGUI.java:58)
+Caused by: java.lang.ClassNotFoundException: com.singlee.webpageserver.CatchQuote
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:381)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:424)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:331)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:357)
+	at org.springframework.util.ClassUtils.forName(ClassUtils.java:249)
+	at org.springframework.beans.factory.support.AbstractBeanDefinition.resolveBeanClass(AbstractBeanDefinition.java:381)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveBeanClass(AbstractBeanFactory.java:1135)
+	... 10 more
+[framework] 2017-09-10 21:40:32,038 - org.springframework.beans.factory.support.DefaultListableBeanFactory -237  [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory  - Ignoring bean class loading failure for bean 'peoplePriceConfig'
+org.springframework.beans.factory.CannotLoadBeanClassException: Cannot find class [com.singlee.webpageserver.PeoplePriceConfig] for bean with name 'peoplePriceConfig' defined in class path resource [config/server.xml]; nested exception is java.lang.ClassNotFoundException: com.singlee.webpageserver.PeoplePriceConfig
+	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveBeanClass(AbstractBeanFactory.java:1138)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.predictBeanType(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.isFactoryBean(AbstractBeanFactory.java:1174)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanNamesForType(DefaultListableBeanFactory.java:222)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeansOfType(DefaultListableBeanFactory.java:303)
+	at org.springframework.context.support.AbstractApplicationContext.getBeansOfType(AbstractApplicationContext.java:948)
+	at org.springframework.context.support.AbstractApplicationContext.registerListeners(AbstractApplicationContext.java:702)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:378)
+	at org.springframework.context.support.ClassPathXmlApplicationContext.<init>(ClassPathXmlApplicationContext.java:139)
+	at org.springframework.context.support.ClassPathXmlApplicationContext.<init>(ClassPathXmlApplicationContext.java:93)
+	at com.singlee.webpageserver.MarketPriceGUI.<clinit>(MarketPriceGUI.java:58)
+Caused by: java.lang.ClassNotFoundException: com.singlee.webpageserver.PeoplePriceConfig
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:381)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:424)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:331)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:357)
+	at org.springframework.util.ClassUtils.forName(ClassUtils.java:249)
+	at org.springframework.beans.factory.support.AbstractBeanDefinition.resolveBeanClass(AbstractBeanDefinition.java:381)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveBeanClass(AbstractBeanFactory.java:1135)
+	... 10 more
+[framework] 2017-09-10 21:40:32,038 - org.springframework.beans.factory.support.DefaultListableBeanFactory -237  [main] INFO  org.springframework.beans.factory.support.DefaultListableBeanFactory  - Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@47542153: defining beans [commWriteFile,commWriteFileWeb,quotePrice,catchQuote,webPageSender,webPageServer,heart,peoplePriceConfig]; root of factory hierarchy
+[framework] 2017-09-10 21:40:32,038 - org.springframework.beans.factory.support.DefaultListableBeanFactory -237  [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory  - Creating shared instance of singleton bean 'commWriteFile'
+[framework] 2017-09-10 21:40:32,038 - org.springframework.beans.factory.support.DefaultListableBeanFactory -237  [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory  - Creating instance of bean 'commWriteFile'
+[framework] 2017-09-10 21:40:32,054 - org.springframework.beans.factory.support.DefaultListableBeanFactory -253  [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory  - Eagerly caching bean 'commWriteFile' to allow for resolving potential circular references
+[framework] 2017-09-10 21:40:32,054 - org.springframework.beans.factory.support.DefaultListableBeanFactory -253  [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory  - Finished creating instance of bean 'commWriteFile'
+[framework] 2017-09-10 21:40:32,054 - org.springframework.beans.factory.support.DefaultListableBeanFactory -253  [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory  - Creating shared instance of singleton bean 'commWriteFileWeb'
+[framework] 2017-09-10 21:40:32,054 - org.springframework.beans.factory.support.DefaultListableBeanFactory -253  [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory  - Creating instance of bean 'commWriteFileWeb'
+[framework] 2017-09-10 21:40:32,054 - org.springframework.beans.factory.support.DefaultListableBeanFactory -253  [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory  - Eagerly caching bean 'commWriteFileWeb' to allow for resolving potential circular references
+[framework] 2017-09-10 21:40:32,054 - org.springframework.beans.factory.support.DefaultListableBeanFactory -253  [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory  - Finished creating instance of bean 'commWriteFileWeb'
+[framework] 2017-09-10 21:40:32,054 - org.springframework.beans.factory.support.DefaultListableBeanFactory -253  [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory  - Creating shared instance of singleton bean 'heart'
+[framework] 2017-09-10 21:40:32,054 - org.springframework.beans.factory.support.DefaultListableBeanFactory -253  [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory  - Creating instance of bean 'heart'
+[framework] 2017-09-10 21:40:32,054 - org.springframework.beans.factory.support.DefaultListableBeanFactory -253  [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory  - Eagerly caching bean 'heart' to allow for resolving potential circular references
+[framework] 2017-09-10 21:40:32,085 - org.springframework.beans.factory.support.DefaultListableBeanFactory -284  [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory  - Finished creating instance of bean 'heart'
+[framework] 2017-09-10 21:40:32,085 - org.springframework.context.support.ClassPathXmlApplicationContext -284  [main] DEBUG org.springframework.context.support.ClassPathXmlApplicationContext  - Publishing event in context [org.springframework.context.support.ClassPathXmlApplicationContext@76b0bfab]: org.springframework.context.event.ContextRefreshedEvent[source=org.springframework.context.support.ClassPathXmlApplicationContext@76b0bfab: display name [org.springframework.context.support.ClassPathXmlApplicationContext@76b0bfab]; startup date [Sun Sep 10 21:40:31 CST 2017]; root of context hierarchy]
+[framework] 2017-09-10 21:40:32,417 - org.springframework.beans.factory.support.DefaultListableBeanFactory -616  [AWT-EventQueue-0] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory  - Returning cached instance of singleton bean 'heart'
+[framework] 2017-09-10 21:40:32,418 - org.springframework.beans.factory.support.DefaultListableBeanFactory -617  [AWT-EventQueue-0] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory  - Creating instance of bean 'webPageServer'
+[framework] 2017-09-10 21:40:32,422 - org.springframework.beans.factory.support.DefaultListableBeanFactory -621  [AWT-EventQueue-0] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory  - Finished creating instance of bean 'webPageServer'
+[framework] 2017-09-10 21:40:32,907 - org.springframework.beans.factory.support.DefaultListableBeanFactory -1106 [Thread-3] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory  - Creating instance of bean 'webPageServer'
+[framework] 2017-09-10 21:40:32,907 - org.springframework.beans.factory.support.DefaultListableBeanFactory -1106 [Thread-3] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory  - Finished creating instance of bean 'webPageServer'
+[framework] 2017-09-10 21:40:32,923 - com.singlee.webpageserver.MarketPriceServer -1122 [Thread-4] DEBUG com.singlee.webpageserver.MarketPriceServer  - 管理线程开始起动……
